@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCC BuyNSell</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://kit.fontawesome.com/cb15c60a65.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div>
+                <img src="/static/images/logo.png" width="45px">
+            </div>
+        </div>
+    </header>
+
+    <!-- Parent container to hold both text and form -->
+    <div class="main-container">
+        <!-- Left side - text content -->
+        <div class="homepage-text-container">
+            <div class="content">
+                <h1>Welcome to CCC BuyNSell</h1>
+                <p>Discover, Buy, and Sell</p>
+            </div>
+        </div>
+
+        <!-- Right side - form content -->
+        <div class="container">
+            <!-- Login Form -->
+            <div class="form-box" id="loginForm">
+                <div class="site-name-box">
+                    <h1>CCC BuyNSell</h1>
+                </div>
+                <h2>SIGN-IN</h2>
+                <form action="{{ url_for('login') }}" method="post">
+                    <div class="input-group">
+                        <label for="email"><i class="fas fa-envelope"></i></label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password"><i class="fas fa-lock"></i></label>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit">LOGIN</button>
+                </form>
+                <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
+            </div>            
+        
+            <!-- Register Form (Hidden by Default) -->
+            <div class="form-box" id="registerForm" style="display: none;">
+                <div class="site-name-box">
+                    <h1>CCC BuyNSell</h1>
+                </div>
+                <h2>REGISTER</h2>
+                <form id="registerForm" action="{{ url_for('register') }}" method="POST" onsubmit="return validateForm()">
+                    <!-- First Name -->
+                    <div class="input-group">
+                        <span class="error" id="first_name_error"></span>
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <!-- Last Name -->
+                    <div class="input-group">
+                        <span class="error" id="last_name_error"></span>
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+                    </div>
+                    <!-- Username -->
+                    <div class="input-group">
+                        <span class="error" id="username_error"></span>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <!-- Email -->
+                    <div class="input-group">
+                        <span class="error" id="email_error"></span>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <!-- Password -->
+                    <div class="input-group">
+                        <span class="error" id="password_error"></span>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" title="Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character">
+                    </div>
+                    <!-- Confirm Password -->
+                    <div class="input-group">
+                        <span class="error" id="confirm_password_error"></span>
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit">REGISTER</button>
+                </form>
+                <p>Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <footer>
+        <p>2024 CCC BuyNSell. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+        }
+
+    </script>
+    <script>
+  // Function to clear error when user focuses on the input
+  function clearError(field) {
+        document.getElementById(field + "_error").textContent = "";
+        document.getElementById(field + "_error").style.display = "none";
+        document.getElementById(field).style.borderColor = "";
+    }
+
+    // Function to handle real-time validation
+    function validateField(field) {
+        let input = document.getElementById(field);
+        let errorSpan = document.getElementById(field + "_error");
+        if (input.value.trim() === "") {
+            errorSpan.textContent = "This is a required field";
+            errorSpan.style.display = "block";
+            input.style.borderColor = "red";
+        }
+        else if (field === 'password' || field === 'confirm_password') {
+            // Check if password and confirm password match
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirm_password').value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirm_password_error').textContent = "Passwords do not match";
+                document.getElementById('confirm_password_error').style.display = "block";
+                document.getElementById('confirm_password').style.borderColor = "red";
+            } else {
+                document.getElementById('confirm_password_error').style.display = "none";
+                document.getElementById('confirm_password').style.borderColor = "";
+            }
+        }
+    }
+
+    // Main form validation
+    function validateForm() {
+        let isValid = true;
+
+        // Array of fields to check
+        const fields = ['first_name', 'last_name', 'username', 'email', 'password', 'confirm_password'];
+
+        // Loop through all fields and check for required fields and validity
+        fields.forEach(field => {
+            let input = document.getElementById(field);
+            if (input.value.trim() === "") {
+                document.getElementById(field + "_error").textContent = "This is a required field";
+                document.getElementById(field + "_error").style.display = "block";
+                input.style.borderColor = "red";
+                isValid = false;
+            }
+        });
+
+        // Password match validation
+        let password = document.getElementById('password').value;
+        let confirmPassword = document.getElementById('confirm_password').value;
+        if (password !== confirmPassword) {
+            document.getElementById('confirm_password_error').textContent = "Passwords do not match";
+            document.getElementById('confirm_password_error').style.display = "block";
+            document.getElementById('confirm_password').style.borderColor = "red";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    // Attach event listeners for real-time validation
+    document.getElementById('first_name').addEventListener('blur', () => validateField('first_name'));
+    document.getElementById('last_name').addEventListener('blur', () => validateField('last_name'));
+    document.getElementById('username').addEventListener('blur', () => validateField('username'));
+    document.getElementById('email').addEventListener('blur', () => validateField('email'));
+    document.getElementById('password').addEventListener('blur', () => validateField('password'));
+    document.getElementById('confirm_password').addEventListener('blur', () => validateField('confirm_password'));
+    </script>
+
+</body>
+</html>

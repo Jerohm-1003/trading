@@ -1,0 +1,845 @@
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e8eaf1;
+}
+
+/* Ensure the content takes up the full height to push footer down if needed */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Header */
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgb(0, 0, 85);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Adjusting the layout */
+.navbar > div,
+.navbar > nav,
+.navbar > .search-container {
+  flex: 1;
+}
+
+/* Ensure the logo stays aligned */
+.navbar img {
+  height: 45px;
+  vertical-align: middle;
+}
+
+/* Align the search bar in the center */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container input[type="text"] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 5px;
+  width: 700px;
+}
+
+.search-container button {
+  padding: 8px 12px;
+  border: none;
+  background-color: white;
+  color: rgb(0, 0, 85);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/*filter styling
+/* Container for the filter form */
+.filter-container {
+  background-color: #f4f4f4;
+  padding: 10px 15px; /* Reduced padding for a slimmer look */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Adjust spacing */
+  align-items: center;
+  margin-top: 60px;
+}
+
+/* Header inside the filter form */
+.filter-container h2 {
+  font-size: 16px; /* Slightly smaller font size */
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  width: 100%;
+}
+
+/* Labels for each filter input */
+.filter-container label {
+  font-size: 14px; /* Smaller font size */
+  margin-right: 8px; /* Reduced space between label and input */
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Style for the select inputs and number inputs */
+.filter-container select,
+.filter-container input {
+  padding: 6px 10px; /* Reduced padding for slimmer inputs */
+  font-size: 14px; /* Slightly smaller font size */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 120px; /* Reduced width */
+  margin-bottom: 8px; /* Reduced space between elements */
+}
+
+/* Style for the Apply Filters button */
+.filter-container button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 8px 16px; /* Reduced padding */
+  font-size: 14px; /* Smaller font size */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 12px; /* Reduced space */
+}
+
+.filter-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .filter-container {
+      flex-direction: column; /* Stack elements vertically */
+      align-items: flex-start;
+  }
+
+  .filter-container select,
+  .filter-container input {
+      width: 100%; /* Full width on smaller screens */
+      margin-bottom: 15px; /* More space between inputs */
+  }
+
+  .filter-container button {
+      width: 100%;
+      margin-left: 0;
+  }
+}
+
+
+
+
+
+/* Navigation links */
+/* Style for the navigation */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px; /* Add spacing between items */
+  padding-left: 200px; /* Space on the left side of the nav */
+}
+
+/* Style for the li elements */
+nav ul li {
+  position: relative; /* For dropdown positioning */
+}
+
+/* Style for the anchor tags inside li */
+nav ul li a {
+  text-decoration: none;
+  color: #fff; /* White text for button */
+  font-size: 16px;
+  padding: 10px 10px;
+  background-color: rgb(0, 0, 85); /* Button background color */
+  border: 2px solid rgb(0, 0, 85); /* Button border */
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Hover effect for the anchor tags */
+nav ul li a:hover {
+  background-color: #ffffff; /* Darker background on hover */
+  color: rgb(0, 0, 0); /* Keep text white */
+  border-color: rgb(0, 0, 85); /* Darker border color on hover */
+}
+
+/* For dropdown content */
+nav ul li.dropdown:hover .dropdown-content {
+  display: block; /* Show dropdown on hover */
+}
+
+/* Style for the dropdown content */
+nav ul li .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+}
+
+nav ul li .dropdown-content a {
+  padding: 10px 15px;
+  color: #333;
+  font-size: 14px;
+  display: block;
+  background-color: #f1f1f1; /* Light background for dropdown items */
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li .dropdown-content a:hover {
+  background-color: rgb(0, 0, 85);
+  color: rgb(255, 255, 255);
+}
+
+
+
+
+/* Basic styling for dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none; /* Hide by default */
+  position: absolute; /* Position it below the parent */
+  background-color: rgb(0, 0, 85);
+  min-width: 160px; /* Minimum width for dropdown */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Make sure it appears above other elements */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Show dropdown on hover */
+}
+
+.dropdown-content a {
+  color: white; /* Text color */
+  padding: 12px 16px; /* Spacing around the links */
+  text-decoration: none; /* Remove underline */
+  display: block; /* Make links block elements */
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Background color on hover */
+}
+
+
+
+
+/* Grid layout for items */
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); /* Auto-fill columns, min item width of 270px */
+  grid-gap: 20px; /* Space between items */
+  margin-left: 100px; /* Adjust based on sidebar width */
+  margin-top: 70px; /* Adjust top margin */
+  margin-bottom: 15px;
+  margin-right: 100px
+}
+
+/* Flexbox for image and details */
+.item-container {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Adding a border and shadow to the item card */
+.item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  height: 405px; /* Fixed height for uniformity */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.3s; /* Transition for hover effect */
+}
+
+.item:hover {
+  transform: translateY(-5px); /* Lift the item card on hover */
+  border: 1px solid rgb(0, 0, 85);
+}
+
+/* Style for item name */
+.item-name {
+  font-size: 20px; /* Adjust the size as needed */
+  line-height: 1.2; /* Adjust line height for better spacing */
+  margin: 0; /* Remove any margin */
+  margin-top: 8px; /* Slight top margin to add spacing */
+  padding: 0 7px; /* Add a little horizontal padding for spacing, but keep vertical padding 0 */
+  overflow-wrap: break-word; /* Allow long words to break */
+  display: -webkit-box; /* Use Flexbox for multi-line */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Required for line clamping */
+  overflow: hidden; /* Hide overflow content */
+  height: 2.4em; /* Adjust height to fit 2 lines (1.2em * 2) */
+  text-overflow: ellipsis; /* Add ellipsis for overflow */
+}
+
+/* Style for item price */
+.item-price {
+  font-size: 25px; /* Adjust font size for price */
+  font-weight: 100;
+  color: rgb(0, 0, 85); /* Change color if needed */
+  margin-top: 17px; /* Pushes the price to the bottom of item-details */
+  padding: 7px;
+}
+
+/* Style for item image */
+.item-image {
+  background-color: #f1f1f1;
+  height: 290px; /* Adjust height for consistent display */
+  overflow: hidden; /* Hide overflow to prevent stretching */
+  margin: 0; /* Remove all margins */
+  padding: 0; /* Remove all padding */
+  display: flex; /* Use flexbox for positioning */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.item-image img {
+  max-width: 100%; /* Ensure the image does not exceed container width */
+  max-height: 100%; /* Ensure the image does not exceed container height */
+  object-fit: contain; /* Maintain aspect ratio */
+}
+
+.item:hover {
+  transform: translateY(-5px); /* Lift the item card on hover */
+  border: 1px solid rgb(0, 0, 85);
+}
+
+.item-price-actions {
+  display: flex;
+  justify-content: space-between; /* Distribute space between price and buttons */
+  align-items: center; /* Vertically align items */
+}
+
+.item-actions {
+  display: flex; /* Align buttons in a row */
+  gap: 10px; /* Add space between buttons */
+}
+
+
+
+/*your listed items btn*/
+.btn {
+  padding: 5px 10px; /* Add padding for buttons */
+  text-decoration: none; /* Remove underline */
+}
+
+.btn-edit {
+  background-color: rgb(0, 0, 85);
+  color: white; /* White text */
+  border: none; /* Remove border */
+}
+
+.btn-delete {
+  background-color: #8a0900; /* Red background for delete */
+  color: white; /* White text */
+  border: none; /* Remove border */
+}
+
+.btn:hover {
+  opacity: 0.8; /* Add hover effect */
+}
+
+
+
+/*saved items.html*/
+
+.content-container {
+  padding-top: 60px; /* Adjust this value to create enough space */
+}
+
+.btn-remove {
+  width: 100%;
+  background-color: rgb(0, 0, 85);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+/*FOR item_detail.html PART*/
+
+.product-listing {
+  margin-top: 70px; /* Adjust this value as needed */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 1500px;
+  margin: 70px auto; /* Center the listing */
+}
+
+.contact-details {
+  width: 300px; /* Fixed width for the right section */
+  height: 210px; /* Set a fixed height for the right section */
+  padding: 20px; /* Padding inside the right section */
+  border-radius: 8px; /* Optional: rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: box shadow */
+  overflow: auto; /* Allows scrolling if content exceeds height */
+}
+
+.details-container {
+  display: flex; /* Use Flexbox to arrange children */
+  justify-content: space-between; /* Space between left and right sections */
+  margin-top: 20px; /* Add margin to separate from the slideshow */
+}
+
+.product-details {
+  flex: 1; /* Allow this section to take available space */
+  margin-right: 20px; /* Add some space between the two sections */
+}
+
+.product-name {
+  font-size: 35px; /* Increase the font size for the product name */
+  margin: 0; /* Remove default margin */
+}
+
+.product-price {
+  font-size: 35px; /* Increase the font size for the price */
+  font-weight: 100;
+  margin: 0; /* Remove default margin */
+  color: rgb(0, 0, 85); /* Optional: Color for the price */
+}
+
+.product-condition {
+  font-size: 25px; /* Increase the font size for the product name */
+  margin: 0; /* Remove default margin */
+}
+
+.product-details p {
+  white-space: pre-wrap; /* This ensures that whitespace is preserved */
+  font-size: 17px; /* Adjust size as needed */
+  line-height: 1; /* Improve readability */ 
+  background: #ecf0f1;margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%; /* Keep the container responsive */
+  margin: 0 auto; /* Center the container */
+  text-align: center;
+  overflow: hidden; /* Prevent overflow of images */
+}
+
+.mySlides {
+  display: flex; /* Use flexbox to center the image */
+  justify-content: center; /* Center the image horizontally */
+  height: 650px; /* Set a fixed height for the slides */
+}
+
+.mySlides img {
+  width: auto; /* Adjust this according to your preference */
+  height: 600px; /* Example fixed height */
+  object-fit: cover; /* Crop and fit the image */
+  margin: 0;
+}
+
+/* Arrow styling for slideshow */
+.arrow {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.left {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+  background-color: rgb(0, 0, 85);
+}
+
+.right {
+  right: 0;
+  border-radius: 3px;
+  background-color: rgb(0, 0, 85);
+}
+
+.save-btn {
+  width: 100%;
+  background-color: rgb(0, 0, 85);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* POST ITEM PART */
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 70px auto; /* Center the form on the page and add top margin */
+}
+
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea{
+  width: 96%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* File input styling */
+input[type="file"] {
+  padding: 8px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Styling for image preview */
+#grid_image_preview img, #detail_images_preview img {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 10px;
+}
+  
+
+/* Button styling */
+.submit-btn {
+  width: 100%;
+  background-color: rgb(0, 0, 85);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Back to Marketplace link */
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+  color: rgb(0, 0, 85);
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/*USER INFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
+.parent-container {
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+}
+
+
+.profile-container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 40px;
+  width: 70%;
+  max-width: 900px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Centers the container horizontally */
+}
+
+
+
+/* Profile header with icon and title */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-icon {
+  font-size: 30px;
+  color: rgb(0, 0, 85);
+  margin-right: 10px;
+}
+
+.profile-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Form styling */
+.profile-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-left {
+  width: 60%;
+}
+
+.form-right {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.change-password {
+  background-color: rgb(0, 0, 85);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.change-password:hover {
+  background-color: #0056b3;
+}
+
+/* Profile picture styling */
+.profile-picture {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.picture-circle {
+  background-color: #2c3e50;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.edit-picture {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgb(0, 0, 85);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.edit-picture i {
+  font-size: 16px;
+}
+
+/* Save button styling */
+.save-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.save-button {
+  background-color: rgb(0, 0, 85);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Admin Dashboard Styles */
+.dashboard {
+  margin: 80px auto; /* Adjust based on your header height */
+  padding: 20px;
+  max-width: 1200px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  flex: 1;
+  margin: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+
+
+/* FOOTER */
+footer {
+  background-color: rgb(0, 0, 85);
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 100;
+  margin-top: auto; /* Allows the footer to move based on content */
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+}

@@ -1,0 +1,128 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #f0f4f8, #d9e2ec, #bcccdc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url(/Images/ccc_backrop.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-box {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px;
+  margin: 20px; 
+  box-sizing: border-box;
+}
+
+.site-name-box {
+  background-color: rgb(0, 0, 85);
+  color: white; /* Text color */
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 20px; 
+}
+
+.site-name-box h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px; 
+  background-color: white; 
+}
+
+.input-group label {
+  margin-right: 10px;
+  color: #2c3e50;
+  padding: 10px;
+  background-color: #e9ecef; 
+  border-top-left-radius: 4px; 
+  border-bottom-left-radius: 4px; 
+  border-right: 1px solid #ccc; 
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-top-right-radius: 4px; 
+  border-bottom-right-radius: 4px;
+  outline: none;
+   box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(0, 0, 85);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: rgb(0, 0, 156);
+}
+
+.register-link {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.back-button {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+}

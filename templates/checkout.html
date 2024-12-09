@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>Checkout</title>
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/cb15c60a65.js" crossorigin="anonymous"></script>
+    </head>
+<body class="bg-light">
+    <!-- Mobile Menu -->
+    <div class="menu-overlay"></div>
+    <div class="slide-menu mobile-menu">
+        <div class="menu-header">
+            <h5 class="mb-0">Menu</h5>
+            <button class="menu-close">&times;</button>
+        </div>
+        <ul class="menu-items">
+            <li><a href="{{ url_for('filter_by_category', category='all') }}">All Categories</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='clothes') }}">Clothes</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='school_supplies') }}">School Supplies</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='office_equipment') }}">Office Equipment</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='devices') }}">Devices</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='bags') }}">Bags</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='electronics') }}">Electronics</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='shoes') }}">Shoes</a></li>
+            <li><a href="{{ url_for('filter_by_category', category='miscellaneous') }}">Miscellaneous</a></li>
+        </ul>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-auto contact-info">
+                    <span class="me-3"><i class="fas fa-phone me-2"></i>+021-95-51-84</span>
+                    <span class="me-3"><i class="fas fa-envelope me-2"></i>email@email.com</span>
+                    <span><i class="fas fa-map-marker-alt me-2"></i>1734 Stonecoal Road</span>
+                </div>
+                <div class="col-auto">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle text-decoration-none text-white" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user fa-sm me-2"></i>My Account
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url_for('user_info') }}"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="/post_item"><i class="fas fa-plus"></i> List an Item</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="py-4" style="background-color: var(--dark-bg);">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-12 col-md-3">
+                  <a href="{{ url_for('main_index') }}" class="logo">Group5<span>.</span></a>
+              </div>
+              <div class="col-12 col-md-6">
+                  <div class="search-bar">
+                      <form action="{{ url_for('search') }}" method="get">
+                          <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Search here" name="query" aria-label="Search">
+                              <button class="btn btn-danger" type="submit">
+                                  <i class="fas fa-search"></i> Search
+                              </button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="col-12 col-md-3">
+                  <div class="header-icons d-flex justify-content-center justify-content-md-end">
+                    <a href="{{ url_for('saved_items') }}" 
+                       class="btn btn-link position-relative me-3 text-white" 
+                       data-bs-toggle="tooltip" 
+                       data-bs-placement="bottom" 
+                       title="View Saved Items">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="{{ url_for('view_cart') }}" class="btn btn-link position-relative me-3 text-white">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>                    
+                    <button class="btn btn-link menu-toggle d-md-none text-white">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="row">
+            <!-- Cart Items -->
+            <div class="col-md-8">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Items to Trade</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if cart_items %}
+                            <ul class="list-group">
+                                {% for item in cart_items %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">{{ item.name }}</h6>
+                                        <small class="text-muted">₱{{ item.price }}</small>
+                                    </div>
+                                    <span>
+                                        <img src="{{ url_for('static', filename=item.grid_image) }}" alt="{{ item.name }}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
+                                    </span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">Your cart is empty. Go back to add items!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Total:</h6>
+                        <p class="h5">₱{{ total_price }}</p>
+
+                        <hr>
+
+                        <h6>Payment Method</h6>
+                        <div class="form-group">
+                            <label for="payment-method">Choose a payment method:</label>
+                            <select class="form-control" id="payment-method" name="payment_method">
+                                <option value="credit_card">Credit Card</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                            </select>
+                        </div>
+
+                        <hr>
+
+                        <!-- Payment Button -->
+                        <form action="{{ url_for('process_payment') }}" method="POST">
+                            <input type="hidden" name="selected_items" value="{{ selected_item_ids }}">
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-credit-card"></i> Proceed to Payment
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
