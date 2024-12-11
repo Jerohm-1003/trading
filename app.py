@@ -9,6 +9,7 @@ import mysql.connector
 import MySQLdb
 from mysql.connector import Error
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from app import app
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Required for session management
