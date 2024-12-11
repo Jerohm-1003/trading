@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header>
+    <div class="navbar">
+        <div>
+            <a href="{{ url_for('main_index') }}" style="color: #fff; text-decoration: none;">
+                <h4 style="margin: 0; padding: 0; line-height: 0.8;" class="text-montserrat font-weight-normal">
+                    <span>CCC Buy N Sell</span>
+                </h4>
+            </a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('homepage') }}">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/login.html">Login</a></li>
+                <li><a href="register.html">Signup</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="form-container">
+    <h1>Update Item</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Item Details</legend>
+
+            <div class="form-group">
+                <label for="item_name">Item Name:</label>
+                <input type="text" name="item_name" id="item_name" value="{{ item.name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="item_price">Item Price:</label>
+                <input type="text" name="item_price" id="item_price" value="{{ item.price }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="item_desc">Description:</label>
+                <textarea name="item_desc" id="item_desc" required>{{ item.description }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="item_quality">Condition:</label>
+                <select name="item_quality" id="item_quality" required>
+                    <option value="new" {% if item.condition == 'new' %}selected{% endif %}>New</option>
+                    <option value="used_like_new" {% if item.condition == 'used_like_new' %}selected{% endif %}>Used - Like New</option>
+                    <option value="used_good" {% if item.condition == 'used_good' %}selected{% endif %}>Used - Good</option>
+                    <option value="used_fair" {% if item.condition == 'used_fair' %}selected{% endif %}>Used - Fair</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="item_category">Category:</label>
+                <select name="item_category" id="item_category" required>
+                    <option value="Clothes" {% if item.category == 'Clothes' %}selected{% endif %}>Clothes</option>
+                    <option value="School Supplies" {% if item.category == 'School Supplies' %}selected{% endif %}>School Supplies</option>
+                    <option value="Office Equipments" {% if item.category == 'Office Equipments' %}selected{% endif %}>Office Equipments</option>
+                    <option value="Devices" {% if item.category == 'Devices' %}selected{% endif %}>Devices</option>
+                    <option value="Bags" {% if item.category == 'Bags' %}selected{% endif %}>Bags</option>
+                    <option value="Electronics" {% if item.category == 'Electronics' %}selected{% endif %}>Electronics</option>
+                    <option value="Shoes" {% if item.category == 'Shoes' %}selected{% endif %}>Shoes</option>
+                    <option value="Miscellaneous" {% if item.category == 'Miscellaneous' %}selected{% endif %}>Miscellaneous</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="meetup_place">Meetup Place:</label>
+                <input type="text" name="meetup_place" id="meetup_place" value="{{ item.meetup_place }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="seller_phone">Seller Phone:</label>
+                <input type="text" name="seller_phone" id="seller_phone" value="{{ item.seller_phone }}" required placeholder="e.g., +63 912 345 6789">
+            </div>
+
+            <div class="form-group">
+                <label for="grid_image">Update Grid Image:</label>
+                <input type="file" name="grid_image" id="grid_image" accept="image/*" onchange="previewGridImage(event)">
+                <div id="grid_image_preview">
+                    <img src="{{ url_for('static', filename=item.grid_image) }}" alt="Current Grid Image" style="max-width: 200px;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="detail_images">Update Detail Images:</label>
+                <input type="file" name="detail_images" id="detail_images" accept="image/*" multiple onchange="previewDetailImages(event)">
+                <div id="detail_images_preview">
+                    {% for image in item.detail_images %}
+                        <img src="{{ url_for('static', filename=image) }}" alt="Current Detail Image" style="max-width: 100px; margin: 10px;">
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Update Item</button>
+            </div>
+        </fieldset>
+    </form>
+    <a href="/" class="back-link">Back to Marketplace</a>
+</div>
+
+<script>
+    function previewGridImage(event) {
+        var gridImagePreview = document.getElementById('grid_image_preview');
+        gridImagePreview.innerHTML = '';
+
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '200px';
+                img.style.marginTop = '10px';
+                gridImagePreview.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function previewDetailImages(event) {
+        var detailImagesPreview = document.getElementById('detail_images_preview');
+        detailImagesPreview.innerHTML = '';
+
+        var files = event.target.files;
+        if (files.length > 0) {
+            Array.from(files).forEach(function(file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '100px';
+                    img.style.margin = '10px';
+                    detailImagesPreview.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+:root {
+  --primary-red: #D10024;
+  --dark-bg: #15161D;
+  --secondary-dark: #1E1F29;
+}
+
+/* Top Bar Styles */
+.top-bar {
+  background-color: var(--secondary-dark);
+  color: white;
+  padding: 10px 0;
+}
+
+/* Highlight invalid fields with a red border and exclamation icon */
+.is-invalid {
+  border-color: red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  display: none;
+  margin-bottom: 5px;
+  text-align: left;
+  position: absolute;
+  top: -20px;  /* Adjust the distance above the label */
+  left: 0;
+}
+
+.input-group {
+  position: relative; /* Required for absolute positioning of error message */
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.input-group label {
+  display: block;
+  margin-top: 5px;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.875rem;
+}
+
+.invalid-feedback i {
+  color: red;
+}
+
+
+/* Logo Styles */
+.logo {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--primary-red);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: #222;
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+/* Search Bar Styles */
+.search-bar .input-group {
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.search-bar .btn-danger {
+  background-color: var(--primary-red);
+}
+
+/* Navigation Styles */
+.nav-link {
+  white-space: nowrap;
+}
+
+/* Make the header and navbar sticky */
+.sticky-header {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: -10;
+}
+
+/* Sticky Navbar */
+.sticky-navbar {
+  position: sticky;
+  top: 80px; /* Adjust based on your header height */
+  z-index: 999;
+}
+
+/* Dropdown Menu Adjustment */
+.dropdown {
+  position: relative; /* Make sure the dropdown is positioned relative to its button */
+  z-index: 1050; /* Ensure the dropdown is above the header */
+}
+
+/* Make sure the dropdown menu is below the "My Account" button */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;  /* Ensures the menu appears directly below the button */
+  left: 0;
+  right: auto;
+  z-index: 1060;  /* Above the navbar */
+  background-color: #fff; /* Adjust background color if necessary */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visibility */
+}
+
+/* For the dropdown toggle button */
+.dropdown-toggle {
+  position: relative;
+  z-index: 1060; /* Ensure the button is above the dropdown */
+}
+
+/* Slide Menu */
+.slide-menu {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  z-index: 1000;
+  transition: left 0.3s ease-in-out;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.slide-menu.active {
+  left: 0;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  display: none;
+}
+
+.menu-overlay.active {
+  display: block;
+}
+
+.menu-header {
+  background: var(--dark-bg);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-close {
+  color: white;
+  font-size: 24px;
+  background: none;
+  border: none;
+}
+
+.menu-items {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu-items li a {
+  padding: 15px 20px;
+  display: block;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+
+/* Header Icons */
+.header-icons .btn-link {
+  position: relative;
+}
+
+.btn-link .fa-heart:hover {
+  color: red !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .top-bar .contact-info {
+      display: none;
+  }
+  
+  .search-bar {
+      margin-top: 1rem;
+  }
+
+  .logo {
+      text-align: center;
+      display: block;
+      margin-bottom: 1rem;
+  }
+
+  .header-icons {
+      justify-content: center !important;
+      margin-top: 1rem;
+  }
+
+  .navbar-nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-toggle {
+      display: block;
+  }
+
+  .desktop-nav {
+      display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-toggle {
+      display: none;
+  }
+
+  .mobile-menu {
+      display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-title {
+      font-size: 1rem;
+      height: auto !important;
+  }
+
+  .card-price {
+      font-size: 0.9rem;
+  }
+
+  .row-cols-2 {
+      --bs-gutter-x: 0.5rem;
+  }
+}
+
+
+.card {
+  height: 350px; /* Adjust the height as needed */
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Needed for absolute positioning of the price */
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+/* Card body takes up the available space */
+.card-body {
+  flex-grow: 1;
+  padding-bottom: 30px; /* Optional: adds some space for the price to not overlap */
+}
+
+.card-title {
+  color: black;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit the title to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Price container styles */
+.card-price {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 25px; /* Adjust font size if needed */
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 300px; /* Adjust based on your needs */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lifts the card up slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Adds a stronger shadow */
+  border: 1.5px solid rgb(0, 0, 85);
+}
+
+/* suer info styling */
+.custom-btn {
+  background-color: rgb(0, 0, 85) !important; /* Dark blue background */
+  color: rgb(255, 255, 255) !important; /* White text */
+}
+
+.custom-btn:hover {
+  background-color: rgb(0, 0, 255) !important; /* Lighter blue on hover */
+}
+
+/*FOR item_detail.html PART*/
+.product-listing {
+  margin-top: 20px !important; /* Adjust this value as needed */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 1500px;
+  margin: 70px auto; /* Center the listing */
+}
+
+.contact-details {
+  width: 300px; /* Fixed width for the right section */
+  height: 210px; /* Set a fixed height for the right section */
+  padding: 20px; /* Padding inside the right section */
+  border-radius: 8px; /* Optional: rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: box shadow */
+  overflow: auto; /* Allows scrolling if content exceeds height */
+}
+
+.details-container {
+  display: flex; /* Use Flexbox to arrange children */
+  justify-content: space-between; /* Space between left and right sections */
+  margin-top: 20px; /* Add margin to separate from the slideshow */
+}
+
+.product-details {
+  flex: 1; /* Allow this section to take available space */
+  margin-right: 20px; /* Add some space between the two sections */
+}
+
+.product-name {
+  font-size: 35px; /* Increase the font size for the product name */
+  margin: 0; /* Remove default margin */
+}
+
+.product-price {
+  font-size: 35px; /* Increase the font size for the price */
+  font-weight: 100;
+  margin: 0; /* Remove default margin */
+  color: rgb(0, 0, 85); /* Optional: Color for the price */
+}
+
+.product-condition {
+  font-size: 25px; /* Increase the font size for the product name */
+  margin: 0; /* Remove default margin */
+}
+
+.product-details p {
+  white-space: pre-wrap; /* This ensures that whitespace is preserved */
+  font-size: 17px; /* Adjust size as needed */
+  line-height: 1; /* Improve readability */ 
+  background: #ecf0f1;margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%; /* Keep the container responsive */
+  margin: 0 auto; /* Center the container */
+  text-align: center;
+  overflow: hidden; /* Prevent overflow of images */
+}
+
+.mySlides {
+  display: flex; /* Use flexbox to center the image */
+  justify-content: center; /* Center the image horizontally */
+  height: 650px; /* Set a fixed height for the slides */
+}
+
+.mySlides img {
+  width: auto; /* Adjust this according to your preference */
+  height: 600px; /* Example fixed height */
+  object-fit: cover; /* Crop and fit the image */
+  margin: 0;
+}
+
+/* Arrow styling for slideshow */
+.arrow {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.left {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+  background-color: rgb(0, 0, 85);
+}
+
+.right {
+  right: 0;
+  border-radius: 3px;
+  background-color: rgb(0, 0, 85);
+}
+
+.save-btn {
+  width: 100%;
+  background-color: rgb(0, 0, 85);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* post item */
+.form-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+.form-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.form-group label {
+  font-weight: bold;
+}
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.submit-btn:hover {
+  background-color: #00509e;
+}
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #003366;
+  text-decoration: none;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+.form-control, select {
+  border-radius: 5px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group input[type="text"], .form-group textarea, .form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.form-group input[type="file"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.form-group #grid_image_preview img, .form-group #detail_images_preview img {
+  max-width: 200px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+/* responsive */
+@media (max-width: 576px) {
+  #allItems .card {
+    height: 250px; /* Smaller height for slim devices */
+  }
+
+  #allItems .card img {
+    height: 150px; /* Adjust image height to keep proportion */
+    object-fit: cover;
+  }
+
+  #allItems .card .card-body {
+    padding: 8px; /* Adjust padding for smaller card body */
+  }
+
+  #allItems .card-price {
+    font-size: 0.9rem; /* Smaller font size for price on small screens */
+  }
+
+  .card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit the title to 2 lines on mobile */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Break words if necessary */
+    font-size: 1rem; /* Smaller font size on mobile */
+  }
+}
+
+/* Ensure cards are responsive and have consistent sizes on mobile */
+@media (max-width: 767px) {
+  #itemList .card {
+      width: 100%; /* Full width on small screens */
+      height: 250px; /* Set a fixed height for mobile view cards */
+  }
+
+  #itemList .card img {
+      object-fit: cover; /* Make images fill the card, maintaining aspect ratio */
+      height: 150px; /* Set image height for consistency */
+  }
+
+  #itemList .card-title {
+      font-size: 1rem; /* Adjust font size to fit smaller screens */
+      height: auto; /* Allow text to wrap if necessary */
+  }
+
+  #itemList .card-price {
+      font-size: 1.2rem; /* Adjust price font size */
+      bottom: 0; /* Position the price at the bottom */
+  }
+}
+
+/* Adjust the layout for larger devices (tablet and up) */
+@media (min-width: 768px) {
+  #itemList .card {
+      height: auto; /* Allow the card to expand based on content */
+  }
+
+  #itemList .card img {
+      height: 200px; /* Increase image height for larger screens */
+  }
+}
+
+/* Ensure that the cards are aligned properly on different screen sizes */
+#itemList .row-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#itemList .row-cols-md-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#itemList .row-cols-lg-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+/*checkout*/
+.custom-card {
+  border: 1px solid #ddd; /* Or any other styling you need */
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.custom-card-header {
+  padding: 1rem;
+  background-color: #28a745; /* Green background */
+  color: white;
+  font-size: 1.25rem;
+}
+
+.custom-card-body {
+  padding: 1rem;
+}
